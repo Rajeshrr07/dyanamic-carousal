@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>card</title>
+
+
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			.card {
+				/* width: 400px; */
+				width: 350px;
+				height: fit-content;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+				border-radius: .5rem;
+				padding: 1rem;
+				margin: 6px;
+			}
+
+			.card-img {
+				border-radius: 1rem;
+
+			}
+
+			.card-img img {
+				width: 100%;
+				border-radius: .5rem;
+			}
+
+			.card-title {
+				text-align: left;
+				color: rgb(59, 59, 59);
+				margin: 5px 0;
+				font-family: cursive;
+			}
+
+			.card-content {
+				text-align: justify;
+				font-family: cursive;
+				color: rgb(100, 98, 98);
+			}
+
+			.card-user {
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				padding-top: 20px;
+			}
+
+			.user-logo {
+				display: flex;
+				align-items: center;
+				justify-items: center;
+			}
+
+			.user-image {
+				width: 35px;
+				height: 35px;
+				border-radius: 50%;
+			}
+
+			.user-info {
+				padding-left: 10px;
+			}
+
+			.user-info h3 {
+				font-family: cursive;
+			}
+
+			.user-info h6 {
+				color: darkgrey;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="one-direction">
+			<!-- <div class="card">
+				<div class="card-img">
+					<img src="https://source.unsplash.com/user/c_v_r/1600x900" alt="">
+				</div>
+				<div class="card-title">
+					<h2>Card Title</h2>
+				</div>
+				<div class="card-content">
+					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium perferendis autem, dolore quidem tempora
+					voluptates quia fuga, commodi suscipit a officia labore odit ipsum saepe natus temporibus inventore?
+					Distinctio,
+					vel.
+				</div>
+				<div class="btn-div">
+					<button class="btn">Button</button>
+				</div>
+
+			</div> -->
+
+			<div class="card">
+				<div class="card-img">
+					<img src="https://source.unsplash.com/user/c_v_r/1600x900" alt="">
+				</div>
+				<div class="card-title">
+					<h3>Card Title</h3>
+				</div>
+				<div class="card-content">
+					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium perferendis autem, dolore quidem tempora
+					voluptates quia fuga, commodi suscipit a officia labore odit ipsum saepe natus temporibus inventore?
+					Distinctio,
+					vel.
+				</div>
+
+				<div class="card-user">
+					<div class="user-logo">
+						<img class="user-image" src="https://source.unsplash.com/user/c_v_r/1600x900" />
+					</div>
+					<div class="user-info">
+						<h3>Anushka D M</h3>
+						<h6>Lorem, ipsum dolor.</h6>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+
+</html>

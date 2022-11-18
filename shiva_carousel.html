@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Carousel</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			section#tasks {
+				width: fit-content;
+				margin: auto;
+			}
+			/* .content-row {
+				display: flex;
+			} */
+			.content-col {
+				width: 50%;
+				float: left;
+			}
+
+			.content-col.text-col {
+				display: flex;
+				flex-direction: column;
+				align-content: center;
+				justify-content: center;
+			}
+			.title {
+				color: #686868;
+				font-size: 30px;
+				font-weight: bold;
+			}
+			.dynamic-row {
+				display: flex;
+				padding: 15px;
+				cursor: pointer;
+			}
+			.dynamic-row.active {
+				background: linear-gradient(to right, #e9e5e5, rgba(104, 96, 98, 0));
+			}
+			.id-content {
+				margin: 10px 5px;
+				color: #696969;
+				width: 80px;
+				height: 80px;
+				border: 1px solid #696969;
+				padding-top: 8px;
+				border-radius: 50%;
+				align-items: center;
+				text-align: center;
+				font-size: 2.5rem;
+			}
+			.dynamic-col h2 {
+				margin-top: 20px;
+				margin-left: 10px;
+			}
+			.dynamic-col p {
+				color: #696969;
+				margin-left: 5px;
+			}
+			.content-absolute {
+				position: absolute;
+			}
+			.top-name {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 20px;
+				gap: 410px;
+			}
+			.bottom-name {
+				display: grid;
+				height: 680px;
+				align-items: end;
+			}
+			.bottom-name h5 {
+				background: linear-gradient(to right, #e9e5e5, rgba(104, 96, 98, 0));
+				width: 150px;
+				padding: 15px 20px;
+			}
+			.dynamic-images img {
+				width: 600px;
+				height: 800px;
+			}
+			.dot-container {
+				display: flex;
+				padding: 20px;
+				gap: 10px;
+			}
+			.dot-container .dot-content {
+				border: 1px solid #fff;
+				width: 30px;
+				height: 3px;
+				cursor: pointer;
+			}
+			.dot-container .dot-content.active {
+				background: #fff;
+			}
+			.dynamic-images.active img {
+				display: block;
+			}
+			/* .dynamic-images img {
+				display: none;
+			} */
+			.top-name.active,
+			.bottom-name.active {
+				display: flex;
+			}
+			.top-name,
+			.bottom-name {
+				display: none;
+			}
+			@media only screen and (max-width: 1200px) {
+				.content-row {
+					display: block;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<section id="tasks"></section>
+
+		<script type="text/javascript">
+			let data = [
+				{
+					id: 1,
+					title: 'kalyani Homes',
+					placename: 'RR Nagar',
+					desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus veritatis, qui praesentium tempora, ducimus at deserunt eveniet expedita exercitationem asperiores non, nisi voluptatibus aliquid sunt placeat officia pariatur dicta ex!',
+					images:
+						'https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?cs=srgb&dl=pexels-pixabay-302769.jpg&fm=jpg&_gl=1*7gasgi*_ga*MTg4NDYyNjA5MC4xNjY4NzU5MzU0*_ga_8JE65Q40S6*MTY2ODc1OTM1NC4xLjEuMTY2ODc1OTM1Ny4wLjAuMA..',
+				},
+				{
+					id: 2,
+					title: 'kalyani Homes',
+					placename: 'Nayandahalli',
+					desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus veritatis, qui praesentium tempora, ducimus at deserunt eveniet expedita exercitationem asperiores non, nisi voluptatibus aliquid sunt placeat officia pariatur dicta ex!',
+					images:
+						'https://images.pexels.com/photos/65438/pexels-photo-65438.jpeg?cs=srgb&dl=pexels-kaique-rocha-65438.jpg&fm=jpg&_gl=1*7s4dv3*_ga*MTg4NDYyNjA5MC4xNjY4NzU5MzU0*_ga_8JE65Q40S6*MTY2ODc1OTM1NC4xLjEuMTY2ODc1OTM3NC4wLjAuMA..',
+				},
+				{
+					id: 3,
+					title: 'kalyani Homes',
+					placename: 'jp Nagar',
+					desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus veritatis, qui praesentium tempora, ducimus at deserunt eveniet expedita exercitationem asperiores non, nisi voluptatibus aliquid sunt placeat officia pariatur dicta ex!',
+					images:
+						'https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?cs=srgb&dl=pexels-tatiana-fet-1105766.jpg&fm=jpg&_gl=1*1cmocwh*_ga*MTg4NDYyNjA5MC4xNjY4NzU5MzU0*_ga_8JE65Q40S6*MTY2ODc1OTM1NC4xLjEuMTY2ODc1OTM5Mi4wLjAuMA..',
+				},
+				{
+					id: 4,
+					title: 'kalyani Homes',
+					placename: 'Mysore Road',
+					desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus veritatis, qui praesentium tempora, ducimus at deserunt eveniet expedita exercitationem asperiores non, nisi voluptatibus aliquid sunt placeat officia pariatur dicta ex!',
+					images:
+						'https://images.pexels.com/photos/1534411/pexels-photo-1534411.jpeg?cs=srgb&dl=pexels-shukhrat-umarov-1534411.jpg&fm=jpg&_gl=1*1sasbez*_ga*MTg4NDYyNjA5MC4xNjY4NzU5MzU0*_ga_8JE65Q40S6*MTY2ODc1OTM1NC4xLjEuMTY2ODc1OTQwNy4wLjAuMA..',
+				},
+			];
+			var items = data;
+			var news = document.getElementById('tasks');
+			let list = items
+				.map((item, idx) => {
+					console.log(item.id);
+					return `
+					<div class="content-row">
+						<div class="content-col text-col">
+							<h1 class = "title">Kalyani Homes </h1>
+							<div class="dynamic-content">
+								<div class= "dynamic-row active ">
+									<div class="dynamic-col ">
+										<div class="id-content">
+											<h3>${item.id}</h3>
+										</div>
+									</div>
+									<div class="dynamic-col">
+										<h2>${item.placename}</h2>
+										<p>${item.desc}</p>
+									</div>
+								</div>
+							</div>
+							<hr></hr>
+						</div>
+						
+						<div class="content-col">
+							<div class="content-absolute">
+								<div class="top-name">
+									<h5>${item.title}</h5>
+									<p>${item.placename}</p>
+								</div>
+								<div class="bottom-name">
+									<p>${item.placename}</p>
+								</div>
+								<div class="dot-container">
+									<div class="dot-content"></div>
+									<div class="dot-content"></div>
+									<div class="dot-content"></div>
+									<div class="dot-content"></div>
+								</div>
+							</div>
+							<div class="dynamic-images ">
+								<img class="active" src=${((idx = 0), item.images)}</img>
+							</div>
+						</div>	
+				`;
+				})
+
+				.join('');
+
+			news.innerHTML = list;
+		</script>
+	</body>
+</html>
