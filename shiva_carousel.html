@@ -39,7 +39,10 @@
 				padding: 15px;
 				cursor: pointer;
 			}
-			.dynamic-row.active {
+			/* #content-col .dynamic-content:first-child .dynamic-row {
+				background: linear-gradient(to right, #e9e5e5, rgba(104, 96, 98, 0));
+			} */
+			.dynamic-row {
 				background: linear-gradient(to right, #e9e5e5, rgba(104, 96, 98, 0));
 			}
 			.id-content {
@@ -65,6 +68,7 @@
 			.content-absolute {
 				position: absolute;
 			}
+
 			.top-name {
 				display: flex;
 				justify-content: space-between;
@@ -86,7 +90,8 @@
 				width: 600px;
 				height: 800px;
 			}
-			.dot-container {
+
+			#button-content {
 				display: flex;
 				padding: 20px;
 				gap: 10px;
@@ -97,23 +102,10 @@
 				height: 3px;
 				cursor: pointer;
 			}
-			.dot-container .dot-content.active {
+			.dot-content.active {
 				background: #fff;
 			}
-			.dynamic-images.active img {
-				display: block;
-			}
-			/* .dynamic-images img {
-				display: none;
-			} */
-			.top-name.active,
-			.bottom-name.active {
-				display: flex;
-			}
-			.top-name,
-			.bottom-name {
-				display: none;
-			}
+
 			@media only screen and (max-width: 1200px) {
 				.content-row {
 					display: block;
@@ -123,10 +115,13 @@
 	</head>
 
 	<body>
-		<section id="tasks"></section>
+		<section id="tasks">
+			<div id="content-col" class="content-col text-col"></div>
+			<div id="content-image"></div>
+		</section>
 
 		<script type="text/javascript">
-			let data = [
+			var data = [
 				{
 					id: 1,
 					title: 'kalyani Homes',
@@ -161,56 +156,66 @@
 				},
 			];
 			var items = data;
-			var news = document.getElementById('tasks');
+			var i = 0;
+			var title = document.getElementById('tasks');
+			var news = document.getElementById('content-col');
+			var cont_image = document.getElementById('content-image');
 			let list = items
 				.map((item, idx) => {
-					console.log(item.id);
 					return `
-					<div class="content-row">
-						<div class="content-col text-col">
-							<h1 class = "title">Kalyani Homes </h1>
-							<div class="dynamic-content">
-								<div class= "dynamic-row active ">
-									<div class="dynamic-col ">
-										<div class="id-content">
-											<h3>${item.id}</h3>
+										<div class="dynamic-content"  onclick="changeimage(${idx})">
+											<div class= "dynamic-row ">
+												<div class="dynamic-col ">
+													<div class="id-content">
+														<h3>${item.id}</h3>
+													</div>
+												</div>
+												<div class="dynamic-col">
+													<h2>${item.placename}</h2>
+													<p>${item.desc}</p>
+												</div>
+											</div>
 										</div>
-									</div>
-									<div class="dynamic-col">
-										<h2>${item.placename}</h2>
-										<p>${item.desc}</p>
-									</div>
-								</div>
-							</div>
-							<hr></hr>
-						</div>
-						
-						<div class="content-col">
-							<div class="content-absolute">
-								<div class="top-name">
-									<h5>${item.title}</h5>
-									<p>${item.placename}</p>
-								</div>
-								<div class="bottom-name">
-									<p>${item.placename}</p>
-								</div>
-								<div class="dot-container">
-									<div class="dot-content"></div>
-									<div class="dot-content"></div>
-									<div class="dot-content"></div>
-									<div class="dot-content"></div>
-								</div>
-							</div>
-							<div class="dynamic-images ">
-								<img class="active" src=${((idx = 0), item.images)}</img>
-							</div>
-						</div>	
-				`;
+										<hr></hr>
+							`;
 				})
-
 				.join('');
 
 			news.innerHTML = list;
+			window.addEventListener('DOMContentLoaded', () => {
+				changeimage(0);
+			});
+
+			const changeimage = (id) => {
+				let content = `<div class="content-col  ">
+										<div class="content-absolute">
+											<div class="top-name">
+												<h5>${data[id].title}</h5>
+												<h5>${data[id].placename}</h5>
+											</div>
+											<div class="bottom-name">
+												<h5>${data[id].placename}</h5>
+											</div>
+											<div class="dot-container" id="button-content">
+													<div class="dot-content" >${data[id]}</div>
+												</div>
+											</div>
+										</div>
+										<div class="dynamic-images">
+											<div class="dynamic-img">
+												<img class="block" src=${data[id].images}</img>
+											</div>
+										</div>
+									</div> `;
+
+				cont_image.innerHTML = content;
+				let button_cont = document.getElementById('button-content');
+				button_cont.innerHTML = data
+					.map((it, i) => {
+						return `	<div class="dot-content " onclick="changeimage(${i})" ></div>`;
+					})
+					.join('');
+			};
 		</script>
 	</body>
 </html>
